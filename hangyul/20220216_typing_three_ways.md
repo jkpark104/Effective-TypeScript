@@ -54,63 +54,62 @@ function calculateArea(shape: Shape){
     
 - 런타임에도 타입 정보를 유지해야 할 경우 취할 수 있는 방법
    - ‘height’ 속성이 매개변수인 shape 객체에 있는지 확인하는 코드를 작성한다
-
-        ```tsx
-        function caculateArea(shape: Shape){
-          if ('height' in shape){ 
-            return shape.width * shape.height;
-          } else {
-            return shape.width * shape.width;
-          }
-        }
-        ```
+```tsx
+function caculateArea(shape: Shape){
+  if ('height' in shape){ 
+    return shape.width * shape.height;
+ } else {
+    return shape.width * shape.width;
+ }
+}
+```
         
   - Tag 기법으로 런타임에 접근 가능한 정보를 명시적으로 저장한다.      
   
-        ```tsx
-        interface Square { 
-          kind: 'square';
-          width: number;
-        } 
-        // 위 height 타입 정의 코드가 없다 치고!
-        interface Rectangle { 
-          kind: 'square';
-          width: number;
-          height: number;
-        } 
+```tsx
+interface Square { 
+  kind: 'square';
+  width: number;
+} 
+// 위 height 타입 정의 코드가 없다 치고!
+interface Rectangle { 
+  kind: 'square';
+  width: number;
+  height: number;
+} 
         
-        function caculateArea(shape: Shape){
-          if (shape.kind === 'rectangle'){ 
-            return shape.width * shape.height;
-          } else {
-            return shape.width * shape.width;
-          }
-        }
-        ```
+function caculateArea(shape: Shape){
+  if (shape.kind === 'rectangle'){ 
+    return shape.width * shape.height;
+  } else {
+    return shape.width * shape.width;
+  }
+}
+```
         
 - 타입을 클래스로 만들면 타입(런타임 접근불가)과 값(런타임 접근가능)을 둘다 사용할 수 있다!       
 
-        ```tsx
-        class Square {
-          constructor(public width: number) {}
-        }
+```tsx
+class Square {
+  constructor(public width: number) {}
+}
         
-        class Rectangle extends Square {
-          constructor(public width: number, public height: number){
-            super(width);
-          }
-        }
+class Rectangle extends Square {
+  constructor(public width: number, public height: number){
+    super(width);
+  }
+}
         
-        type Shape = Square | Rectangle; // 타입으로 참조
+type Shape = Square | Rectangle; // 타입으로 참조
         
-        function calculateArea(shape: Shape) {
-          if (shape instanceof Rectangle) { // Rectangle 클래스 값으로 참조
-            return shape.width * shape.height;
-          } else {
-            return shape.width * shape.width;
-          }
-        }
-        ```
+function calculateArea(shape: Shape) {
+  if (shape instanceof Rectangle) { // Rectangle 클래스 값으로 참조
+    return shape.width * shape.height;
+  } else {
+    return shape.width * shape.width;
+  }
+}
+```
         
   - 인터페이스는 타입으로만 사용가능하지만 클래스는 타입과 값으로 모두 사용할 수 있으며, 어떻게 참조되는지 구분하는 것은 매우 중요한데 이는 아이템 8에서 다룬다고 합니다. 
         
