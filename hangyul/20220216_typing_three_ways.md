@@ -54,6 +54,7 @@ function calculateArea(shape: Shape){
     
 - 런타임에도 타입 정보를 유지해야 할 경우 취할 수 있는 방법
    - ‘height’ 속성이 매개변수인 shape 객체에 있는지 확인하는 코드를 작성한다
+
         ```tsx
         function caculateArea(shape: Shape){
           if ('height' in shape){ 
@@ -65,6 +66,7 @@ function calculateArea(shape: Shape){
         ```
         
   - Tag 기법으로 런타임에 접근 가능한 정보를 명시적으로 저장한다.      
+  
         ```tsx
         interface Square { 
           kind: 'square';
@@ -87,6 +89,7 @@ function calculateArea(shape: Shape){
         ```
         
 - 타입을 클래스로 만들면 타입(런타임 접근불가)과 값(런타임 접근가능)을 둘다 사용할 수 있다!       
+
         ```tsx
         class Square {
           constructor(public width: number) {}
