@@ -74,7 +74,7 @@ const o1: Options = document;  // OK
 const o2: Options = new HTMLAnchorElement;  // OK
 ```
 
-Options 타입은 범위가 매우 넓기 때문에, 순수한 구조건 타입 체커는 이런 종류의 오류를 찾아내지 못한다.
+Options 타입은 범위가 매우 넓기 때문에, 순수한 구조적 타입 체커는 이런 종류의 오류를 찾아내지 못한다.
 
 darkMode 속성에 boolean타입이 아닌 다른 타입의 값이 지정된 경우를 제외하면
 
